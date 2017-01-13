@@ -1,5 +1,5 @@
 ## Description
-A very lightweight tomodoro timer for the terminal that uses system notifications.
+A very lightweight pomodoro timer for the terminal that uses system notifications.
 ###### Note: Currently only works on OSX
 ## How to Install
 	$ git clone https://github.com/layonferreira/romodoro.git
