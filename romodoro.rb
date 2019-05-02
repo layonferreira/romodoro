@@ -46,7 +46,9 @@ class Romodoro
   end
 
   def notify(message)
-    TerminalNotifier::Guard.notify(message, title: 'Romodoro', group: 'Romodoro')
+    TerminalNotifier::Guard.notify(message, title: 'Romodoro',
+                                            group: 'Romodoro',
+                                            sound: 'Glass')
   end
 end
 
