@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
-# encoding: UTF-8
-
-require "colorize"
-require "terminal-notifier-guard"
-
+require 'bundler/setup'
+require 'colorize'
+require 'terminal-notifier-guard'
 
 class Romodoro
   WORK_TIME = 25 * 60 # time of a work sprint in seconds
@@ -20,11 +18,11 @@ class Romodoro
   def start_pomodoro
     loop do
       REPETITIONS.times do |i|
-        start_task(WORK_TIME, "Work!", :yellow)
+        start_task(WORK_TIME, 'Work!', :yellow)
         if i == REPETITIONS - 1
-          start_task(LONG_BREAK, "Long Break", :blue)
+          start_task(LONG_BREAK, 'Long Break', :blue)
         else
-          start_task(SHORT_BREAK, "Short Break", :green)
+          start_task(SHORT_BREAK, 'Short Break', :green)
         end
         resume_work?
       end
@@ -32,15 +30,15 @@ class Romodoro
   end
 
   def resume_work?
-    notify("Resume work?")
-    puts "Press any key to resume your work, or  press Ctrl+C to exit".colorize(:white)
+    notify('Resume work?')
+    puts 'Press any key to resume your work, or  press Ctrl+C to exit'.colorize(:white)
     gets
   end
 
   def start_task(seconds, message, color)
     notify(message)
     puts "#{message} #{seconds / 60} minutes.".colorize(color)
-    puts ""
+    puts ''
     seconds.times do |i|
       print "#{seconds - i} seconds left #{((i.to_f / seconds.to_f) * 100).to_i}% \r"
       sleep(1)
@@ -48,7 +46,7 @@ class Romodoro
   end
 
   def notify(message)
-    TerminalNotifier::Guard.notify(message, title: "Romodoro", group: "Romodoro")
+    TerminalNotifier::Guard.notify(message, title: 'Romodoro', group: 'Romodoro')
   end
 end
 

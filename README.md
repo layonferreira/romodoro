@@ -2,9 +2,9 @@
 A very lightweight pomodoro timer for the terminal that uses system notifications.
 ###### Note: Currently only works on OSX
 ## How to Install
-	$ git clone https://github.com/layonferreira/romodoro.git
-	$ cd romodoro
-	$ bundle install --path 'vendor'
+	git clone https://github.com/layonferreira/romodoro.git
+	cd romodoro
+	bundle install --path 'vendor'
 
 (optional)
 
