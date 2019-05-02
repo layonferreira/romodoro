@@ -2,16 +2,12 @@ GEM
   remote: http://rubygems.org/
   specs:
     colorize (0.8.1)
-    terminal-notifier (2.0.0)
-    terminal-notifier-guard (1.6.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   colorize
-  terminal-notifier
-  terminal-notifier-guard (~> 1.6.1)
 
 BUNDLED WITH
    1.16.2

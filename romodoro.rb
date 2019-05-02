@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require 'bundler/setup'
 require 'colorize'
-require 'terminal-notifier-guard'
 
 class Romodoro
   WORK_TIME = 25 * 60 # time of a work sprint in seconds
@@ -9,6 +8,8 @@ class Romodoro
   LONG_BREAK = 15 * 60 # long break in seconds
   REPETITIONS = 4 # repetitions before a long break
 
+  ALERTER_PATH = './bin/alerter'.freeze
+  SOUND_PATH = './bin/analog-watch-alarm_daniel-simion.mp3'.freeze
   attr_reader :continue
 
   def initialize
@@ -24,15 +25,8 @@ class Romodoro
         else
           start_task(SHORT_BREAK, 'Short Break', :green)
         end
-        resume_work?
       end
     end
-  end
-
-  def resume_work?
-    notify('Resume work?')
-    puts 'Press any key to resume your work, or  press Ctrl+C to exit'.colorize(:white)
-    gets
   end
 
   def start_task(seconds, message, color)
@@ -46,9 +40,9 @@ class Romodoro
   end
 
   def notify(message)
-    TerminalNotifier::Guard.notify(message, title: 'Romodoro',
-                                            group: 'Romodoro',
-                                            sound: 'Glass')
+    IO.popen("afplay #{SOUND_PATH}")
+    system("#{ALERTER_PATH} -title Romodoro -message \"#{message}\" -closeLabel Start -actions Start")
+    IO.popen('killall afplay')
   end
 end
 

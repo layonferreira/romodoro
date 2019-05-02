@@ -1,6 +1,7 @@
 ## Description
-A very lightweight pomodoro timer for the terminal that uses system notifications.
-###### Note: Currently only works on OSX
+A very lightweight macOS pomodoro timer for the terminal that uses system notifications.
+
+
 ## How to Install
 	git clone https://github.com/layonferreira/romodoro.git
 	cd romodoro
@@ -15,7 +16,15 @@ Assuming that you have installed it already, navigate to the romodoro path and e
 ## Modules
 
 [colorize](https://github.com/fazibear/colorize)
-[terminal-notifier](https://github.com/alloy/terminal-notifier)
+[alerter](https://github.com/vjeantet/alerter)
 
 ## LICENSE
 MIT
+
+## Attributions
+### Analog Watch Alarm Sound
+```
+License: Attribution 3.0
+Recorded by Daniel Simion
+URL: http://soundbible.com/2197-Analog-Watch-Alarm.html
+```
