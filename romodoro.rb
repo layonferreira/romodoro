@@ -16,6 +16,7 @@ class Romodoro
   SOUND_PATH = './bin/analog-watch-alarm_daniel-simion.mp3'
   SNOOZE_COMMAND = 'Snooze'
   START_COMMAND = 'Start'
+  SILENCE_COMMAND = 'Silence'
   attr_reader :continue
 
   def initialize
@@ -46,6 +47,7 @@ class Romodoro
       pid = start_alarm
       response = notification_command(message)
       kill_alarm(pid)
+      response = notification_command(message, false) if response == SILENCE_COMMAND
       start_timer(SNOOZE_BREAK, 'Snooze', :red) if response == SNOOZE_COMMAND
     end
   end
@@ -72,9 +74,11 @@ class Romodoro
     end
   end
 
-  def notification_command(message)
+  def notification_command(message, show_silence = true)
+    options = [SNOOZE_COMMAND]
+    options << SILENCE_COMMAND if show_silence
     command = "#{ALERTER_PATH} -title Romodoro -message \"#{message}\" " \
-                "-closeLabel #{SNOOZE_COMMAND} -actions #{START_COMMAND}"
+                "-closeLabel #{START_COMMAND} -actions #{options.join(',')}"
     response = nil
     ::Open3.popen3(command) do |_stdin, stdout, _stderr, _wait_thr|
       response = stdout.read
